@@ -113,10 +113,10 @@ app.get("/isLoggedIn", authenticateToken, (req, res) => {
 // Update User
 app.put("/update", authenticateToken, async (req, res) => {
   const userId = req.user._id;
-  const { name } = req.body;
+  const { name , email , password } = req.body;
 
   try {
-    const updateUser = await User.findByIdAndUpdate(userId, { name }, { new: true });
+    const updateUser = await User.findByIdAndUpdate(userId, { name , email , password}, { new: true });
     res.status(200).json({
       message: "User updated successfully",
       user: updateUser,
